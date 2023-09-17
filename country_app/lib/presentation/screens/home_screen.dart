@@ -1,8 +1,9 @@
-import 'package:country_app/domain/entities/country.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:country_app/presentation/providers/countries/countries_provider.dart';
+import 'package:country_app/domain/entities/country.dart';
 
 /// Main screen, this screen contains the list of all the countries
 class HomeScreen extends StatefulWidget {
@@ -64,9 +65,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       trailing: Text(country.code),
-                      onTap: () {
-                        //TODO: Make the navigation to the new Screen
-                      },
+                      onTap: () =>
+                          context.push('/country-detail/${country.commonName}'),
+                      // onTap: () => context.push(
+                      //     '/country-detail/${country.code}${country.commonName}'),
                     );
                   },
                 ),

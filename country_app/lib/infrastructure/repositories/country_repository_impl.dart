@@ -14,7 +14,7 @@ class CountryRepositoryImpl extends CountriesRepository {
   }
 
   @override
-  Future<Country> getCountry({required String code}) {
-    return dataSource.getCountry(code: code);
+  Future<Country> getCountry({required String countryName}) {
+    return dataSource.getCountry(countryName: countryName);
   }
 }
