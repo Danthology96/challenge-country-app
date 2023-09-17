@@ -5,7 +5,8 @@ enum Region {
   antarctic("Antarctic"),
   asia("Asia"),
   europe("Europe"),
-  oceania("Oceania");
+  oceania("Oceania"),
+  none("None");
 
   const Region(this.value);
   final String value;
@@ -27,6 +28,6 @@ Region? setEnumRegion(String value) {
     case "Oceania":
       return Region.oceania;
     default:
-      return null;
+      return Region.none;
   }
 }

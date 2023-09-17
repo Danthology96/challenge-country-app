@@ -19,7 +19,9 @@ class CountryContentWidget extends StatelessWidget {
         const SizedBox(height: 10),
         Row(
           children: [
-            Image.network(country.coatOfArms!.png, height: 60),
+            (country.coatOfArms?.png == '')
+                ? const SizedBox()
+                : Image.network(country.coatOfArms!.png, height: 50),
             const SizedBox(width: 10),
             Expanded(
               child: Column(

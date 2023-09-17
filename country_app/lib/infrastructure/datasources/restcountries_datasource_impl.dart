@@ -44,4 +44,42 @@ class RestCountriesDataSourceImpl extends CountriesDataSource {
 
     return country;
   }
+
+  @override
+  List<Country> searchCountry(
+      {required String query, required List<Country> countries}) {
+    /// Makes a subquery in all the countries where the query contains that
+    /// characters
+    List<Country> queryCountries = [];
+    if (query != "") {
+      queryCountries = countries.where((country) {
+        final countryStr = country.commonName.toLowerCase();
+        final input = query.toLowerCase();
+        if (!queryCountries.contains(country)) {
+          return countryStr.contains(input);
+        } else {
+          return false;
+        }
+      }).toList();
+      return queryCountries;
+    } else {
+      return [];
+    }
+  }
+
+  @override
+  Future<List<Country>> filterRegion({required String region}) async {
+    /// To avoid bring all the data, we only need this fields to the main list
+    final response = await dio.get("/region/$region",
+        queryParameters: {"fields": "flags,name,cca3,region"});
+    final List<Country> filteredCountries = [];
+    final countriesResponse = response.data;
+
+    /// Needs to map to a country, first will go through a mapper
+    for (var country in countriesResponse) {
+      filteredCountries.add(CountryMapper.restCountriesAllCountriesToEntity(
+          RestCountriesAllResponse.fromMap(country)));
+    }
+    return filteredCountries;
+  }
 }
