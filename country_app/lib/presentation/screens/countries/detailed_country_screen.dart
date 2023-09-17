@@ -30,7 +30,7 @@ class DetailedCountryScreen extends StatelessWidget {
                     SliverAppBar(
                       titleTextStyle:
                           Theme.of(context).textTheme.headlineMedium,
-                      expandedHeight: 150,
+                      expandedHeight: 200,
                       centerTitle: true,
                       title: Text(
                         country.commonName,

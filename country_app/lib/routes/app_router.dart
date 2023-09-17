@@ -1,3 +1,4 @@
+import 'package:country_app/presentation/screens/countries/search_screen.dart';
 import 'package:country_app/presentation/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,6 +11,11 @@ final appRouter = GoRouter(
       path: '/',
       name: HomeScreen.name,
       builder: (context, state) => const HomeScreen(),
+    ),
+    GoRoute(
+      path: '/search',
+      name: SearchScreen.name,
+      builder: (context, state) => const SearchScreen(),
     ),
     GoRoute(
       path: '/country-detail/:countryName',

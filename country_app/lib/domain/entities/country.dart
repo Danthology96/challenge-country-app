@@ -1,3 +1,4 @@
+import 'package:country_app/helpers/enums.dart';
 import 'package:country_app/infrastructure/models/restcountries/restcountires_common_classes.dart';
 
 class Country {
@@ -9,7 +10,7 @@ class Country {
   /// optional attributes
   final String? capital;
   final String? abreviation;
-  final String? region;
+  final Region? region;
   final int? population;
   final Map<String, dynamic>? languages;
   final Map<String, Currency>? currencies;

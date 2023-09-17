@@ -30,5 +30,6 @@ class CountryMapper {
         code: restCountries.cca3,
         commonName: restCountries.name.common,
         officialName: restCountries.name.official,
+        region: restCountries.region,
       );
 }
