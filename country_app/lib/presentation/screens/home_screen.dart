@@ -1,3 +1,4 @@
+import 'package:country_app/domain/entities/country.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,14 +38,39 @@ class _HomeScreenState extends State<HomeScreen> {
         future: countriesProvider.loadAllCountries(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Center(
-              ///TODO: Change listview with customScroll
-              child: ListView.builder(
-                itemCount: countriesProvider.allCountries.length,
-                itemBuilder: (context, index) {
-                  return Text(countriesProvider.allCountries[index].commonName);
-                },
-              ),
+            final List<Country> countries = countriesProvider.allCountries;
+            return CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                /// Replaced listview to slivers due to performance
+                SliverList.separated(
+                  itemCount: countriesProvider.allCountries.length,
+                  separatorBuilder: (context, index) =>
+                      const Divider(height: 2),
+                  itemBuilder: (context, index) {
+                    final Country country = countries[index];
+                    return ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(country.flagUrl),
+                      ),
+                      title: Text(
+                        country.commonName,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      subtitle: Text(
+                        country.officialName,
+                        style: Theme.of(context).textTheme.labelMedium,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      trailing: Text(country.code),
+                      onTap: () {
+                        //TODO: Make the navigation to the new Screen
+                      },
+                    );
+                  },
+                ),
+              ],
             );
           } else {
             return const Center(child: CircularProgressIndicator());

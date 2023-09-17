@@ -4,5 +4,5 @@ class AppTheme {
   ThemeData getTheme() => ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      colorSchemeSeed: Colors.amber);
+      colorSchemeSeed: Colors.indigoAccent);
 }
