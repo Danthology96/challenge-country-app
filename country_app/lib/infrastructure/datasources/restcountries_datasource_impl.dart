@@ -1,8 +1,9 @@
+import 'package:country_app/infrastructure/mappers/country_mapper.dart';
+import 'package:country_app/infrastructure/models/restcountries/restcountries_country_response.dart';
 import 'package:dio/dio.dart';
 
 import 'package:country_app/domain/datasources/countries_datasource.dart';
 import 'package:country_app/domain/entities/country.dart';
-import 'package:country_app/infrastructure/mappers/country_mapper.dart';
 import 'package:country_app/infrastructure/models/restcountries/restcountries_all_response.dart';
 
 class RestCountriesDataSourceImpl extends CountriesDataSource {
@@ -15,9 +16,8 @@ class RestCountriesDataSourceImpl extends CountriesDataSource {
   @override
   Future<List<Country>> getAllCountries() async {
     /// To avoid bring all the data, we only need this fields to the main list
-    final response = await dio.get("/all", queryParameters: {
-      "fields": "capital,flags,region,population,languages,flag,name,cca3"
-    });
+    final response =
+        await dio.get("/all", queryParameters: {"fields": "flags,name,cca3"});
 
     final List<Country> countries = [];
     final countriesResponse = response.data;
@@ -31,14 +31,16 @@ class RestCountriesDataSourceImpl extends CountriesDataSource {
   }
 
   @override
-  Future<Country> getCountry({String code = ''}) async {
-    final response = await dio.get("/name/$code");
+  Future<Country> getCountry({String countryName = ''}) async {
+    final response = await dio
+        .get("/name/$countryName", queryParameters: {"fullText": true});
 
-    final countryResponse = response.data;
+    /// The query returns a list of 1 item
+    final List<dynamic> countryResponse = response.data;
 
     /// Calls the mapper to avoid app crash
-    final Country country =
-        CountryMapper.restCountriesCountryToEntity(countryResponse);
+    final Country country = CountryMapper.restCountriesCountryToEntity(
+        RestCountriesCountryResponse.fromMap(countryResponse.first));
 
     return country;
   }

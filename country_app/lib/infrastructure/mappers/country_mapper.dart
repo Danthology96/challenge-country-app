@@ -3,6 +3,7 @@ import 'package:country_app/infrastructure/models/restcountries/restcountries_al
 import 'package:country_app/infrastructure/models/restcountries/restcountries_country_response.dart';
 
 class CountryMapper {
+  /// constructor to the detailed country
   static Country restCountriesCountryToEntity(
           RestCountriesCountryResponse restCountry) =>
       Country(
@@ -15,18 +16,17 @@ class CountryMapper {
         code: restCountry.cca3,
         commonName: restCountry.name.common,
         officialName: restCountry.name.official,
+        currencies: restCountry.currencies,
+        subregion: restCountry.subregion,
+        borders: restCountry.borders,
+        coatOfArms: restCountry.coatOfArms,
       );
 
+  /// constructor for the generic country displayed on the country's list
   static Country restCountriesAllCountriesToEntity(
           RestCountriesAllResponse restCountries) =>
       Country(
-        capital:
-            restCountries.capital!.isEmpty ? '' : restCountries.capital!.first,
         flagUrl: restCountries.flags.png,
-        region: restCountries.region.name,
-        population: restCountries.population,
-        languages: restCountries.languages,
-        abreviation: restCountries.flag,
         code: restCountries.cca3,
         commonName: restCountries.name.common,
         officialName: restCountries.name.official,

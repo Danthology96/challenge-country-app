@@ -17,4 +17,11 @@ class CountriesProvider extends ChangeNotifier {
     allCountries.addAll(countries);
     notifyListeners();
   }
+
+  Future<Country> loadCountry(String countryName) async {
+    /// Calls the countriesRepository
+    final country =
+        await countriesRepository.getCountry(countryName: countryName);
+    return country;
+  }
 }
