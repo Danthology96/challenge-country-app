@@ -16,13 +16,13 @@ class RestCountriesDataSourceImpl extends CountriesDataSource {
   @override
   Future<List<Country>> getAllCountries() async {
     /// To avoid bring all the data, we only need this fields to the main list
-    final response =
-        await dio.get("/all", queryParameters: {"fields": "flags,name,cca3"});
+    final response = await dio
+        .get("/all", queryParameters: {"fields": "flags,name,cca3,region"});
 
     final List<Country> countries = [];
     final countriesResponse = response.data;
 
-    /// Needs to map to a country, first will go through a cape
+    /// Needs to map to a country, first will go through a mapper
     for (var country in countriesResponse) {
       countries.add(CountryMapper.restCountriesAllCountriesToEntity(
           RestCountriesAllResponse.fromMap(country)));

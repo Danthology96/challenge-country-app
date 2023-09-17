@@ -19,9 +19,7 @@ class CountryContentWidget extends StatelessWidget {
         const SizedBox(height: 10),
         Row(
           children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(country.coatOfArms!.png),
-            ),
+            Image.network(country.coatOfArms!.png, height: 60),
             const SizedBox(width: 10),
             Expanded(
               child: Column(
@@ -49,7 +47,7 @@ class CountryContentWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium,
                 children: [
                   TextSpan(
-                    text: country.region,
+                    text: country.region?.value ?? '',
                     style: Theme.of(context).textTheme.bodyLarge,
                   )
                 ],
@@ -144,6 +142,23 @@ class CountryContentWidget extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: country.abreviation,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  )
+                ],
+              ),
+            ),
+            const Divider(),
+            const SizedBox(height: 20),
+            RichText(
+              text: TextSpan(
+                text: "Breve historia: ",
+                style: Theme.of(context).textTheme.titleMedium,
+                children: [
+                  /// Lorem ipsum to test the wrap widget, would be nice
+                  /// if api brings some text here
+                  TextSpan(
+                    text:
+                        "Lorem id anim ullamco ex qui culpa do. Anim excepteur occaecat nostrud elit. Aute aliquip consequat eu commodo aliquip exercitation nostrud do ex sint do. Id deserunt adipisicing tempor anim cillum eiusmod ullamco nulla minim minim veniam ex. Exercitation reprehenderit laborum fugiat eiusmod labore voluptate. Commodo nulla proident reprehenderit proident ex culpa. \n Lorem id anim ullamco ex qui culpa do. Anim excepteur occaecat nostrud elit. Aute aliquip consequat eu commodo aliquip exercitation nostrud do ex sint do. Id deserunt adipisicing tempor anim cillum eiusmod ullamco nulla minim minim veniam ex. Exercitation reprehenderit laborum fugiat eiusmod labore voluptate. Commodo nulla proident reprehenderit proident ex culpa.",
                     style: Theme.of(context).textTheme.bodyLarge,
                   )
                 ],

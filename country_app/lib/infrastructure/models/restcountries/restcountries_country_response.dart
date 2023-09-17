@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:country_app/helpers/enums.dart';
 import 'package:country_app/infrastructure/models/restcountries/restcountires_common_classes.dart';
 
 /// Mapped class for the response of the restcountries country
@@ -8,7 +9,7 @@ class RestCountriesCountryResponse {
   final String cca3;
   final Map<String, Currency> currencies;
   final List<String> capital;
-  final String region;
+  final Region? region;
   final String subregion;
   final Map<String, dynamic> languages;
   final List<String> borders;
@@ -46,7 +47,7 @@ class RestCountriesCountryResponse {
         currencies: Map.from(json["currencies"])
             .map((k, v) => MapEntry<String, Currency>(k, Currency.fromMap(v))),
         capital: List<String>.from(json["capital"].map((x) => x)),
-        region: json["region"],
+        region: setEnumRegion(json["region"]),
         subregion: json["subregion"],
         languages: json["languages"],
         borders: List<String>.from(json["borders"].map((x) => x)),
@@ -63,7 +64,7 @@ class RestCountriesCountryResponse {
         "currencies": Map.from(currencies)
             .map((k, v) => MapEntry<String, dynamic>(k, v.toMap())),
         "capital": List<dynamic>.from(capital.map((x) => x)),
-        "region": region,
+        "region": region?.value ?? '',
         "subregion": subregion,
         "languages": languages,
         "borders": List<dynamic>.from(borders.map((x) => x)),

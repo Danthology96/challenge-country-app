@@ -1,25 +1,32 @@
 /// Enum for the world regions
-enum Region { africa, americas, antarctic, asia, europe, oceania }
+enum Region {
+  africa("Africa"),
+  americas("Americas"),
+  antarctic("Antarctic"),
+  asia("Asia"),
+  europe("Europe"),
+  oceania("Oceania");
 
-/// To get the regionValues of the map with enum
-final regionValues = EnumValues({
-  "Africa": Region.africa,
-  "Americas": Region.americas,
-  "Antarctic": Region.antarctic,
-  "Asia": Region.asia,
-  "Europe": Region.europe,
-  "Oceania": Region.oceania
-});
+  const Region(this.value);
+  final String value;
+}
 
-/// To globally get any value of a enum
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
+/// function to set a region from a String (from json)
+Region? setEnumRegion(String value) {
+  switch (value) {
+    case "Africa":
+      return Region.africa;
+    case "Americas":
+      return Region.americas;
+    case "Antarctic":
+      return Region.antarctic;
+    case "Asia":
+      return Region.asia;
+    case "Europe":
+      return Region.europe;
+    case "Oceania":
+      return Region.oceania;
+    default:
+      return null;
   }
 }

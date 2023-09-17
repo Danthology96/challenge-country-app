@@ -1,7 +1,9 @@
+import 'package:country_app/presentation/screens/countries/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
+import 'package:country_app/presentation/widgets/countries/country_list_tile_widget.dart';
 import 'package:country_app/presentation/providers/countries/countries_provider.dart';
 import 'package:country_app/domain/entities/country.dart';
 
@@ -31,6 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Countries App'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.push('/search');
+            },
+            icon: const Icon(Icons.search_rounded),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.filter_list_sharp),
+          ),
+        ],
       ),
 
       /// Need a future builder to give time to the app for load data
@@ -50,26 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Divider(height: 2),
                   itemBuilder: (context, index) {
                     final Country country = countries[index];
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(country.flagUrl),
-                      ),
-                      title: Text(
-                        country.commonName,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      subtitle: Text(
-                        country.officialName,
-                        style: Theme.of(context).textTheme.labelMedium,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      trailing: Text(country.code),
-                      onTap: () =>
-                          context.push('/country-detail/${country.commonName}'),
-                      // onTap: () => context.push(
-                      //     '/country-detail/${country.code}${country.commonName}'),
-                    );
+                    return CountryListTileWidget(country: country);
                   },
                 ),
               ],
