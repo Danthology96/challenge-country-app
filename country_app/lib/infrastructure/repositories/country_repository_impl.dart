@@ -17,4 +17,15 @@ class CountryRepositoryImpl extends CountriesRepository {
   Future<Country> getCountry({required String countryName}) {
     return dataSource.getCountry(countryName: countryName);
   }
+
+  @override
+  List<Country> searchCountry(
+      {required String query, required List<Country> countries}) {
+    return dataSource.searchCountry(query: query, countries: countries);
+  }
+
+  @override
+  Future<List<Country>> filterRegion({required String region}) {
+    return dataSource.filterRegion(region: region);
+  }
 }

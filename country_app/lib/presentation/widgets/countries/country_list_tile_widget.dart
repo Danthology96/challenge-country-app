@@ -15,9 +15,19 @@ class CountryListTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage(country.flagUrl),
-      ),
+      leading: ClipRRect(
+          borderRadius: BorderRadius.circular(25),
+          child: FadeInImage(
+            placeholder: const AssetImage('assets/images/placeholder.jpg'),
+            image: NetworkImage(country.flagUrl),
+            fit: BoxFit.cover,
+            width: 40,
+            height: 40,
+            placeholderFit: BoxFit.cover,
+          )),
+      // leading: CircleAvatar(
+      //   backgroundImage: NetworkImage(country.flagUrl),
+      // ),
       title: Text(
         country.commonName,
         style: Theme.of(context).textTheme.titleMedium,

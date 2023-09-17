@@ -98,8 +98,8 @@ class CoatOfArms {
   String toJson() => json.encode(toMap());
 
   factory CoatOfArms.fromMap(Map<String, dynamic> json) => CoatOfArms(
-        png: json["png"],
-        svg: json["svg"],
+        png: json["png"] ?? '',
+        svg: json["svg"] ?? '',
       );
 
   Map<String, dynamic> toMap() => {

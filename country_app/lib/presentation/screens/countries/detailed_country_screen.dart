@@ -37,9 +37,12 @@ class DetailedCountryScreen extends StatelessWidget {
                       ),
                       pinned: true,
                       flexibleSpace: FlexibleSpaceBar(
-                        background: Image(
+                        background: FadeInImage(
+                          placeholder:
+                              const AssetImage('assets/images/placeholder.jpg'),
                           image: NetworkImage(country.flagUrl),
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.cover,
+                          placeholderFit: BoxFit.cover,
                         ),
                       ),
                       actions: [
