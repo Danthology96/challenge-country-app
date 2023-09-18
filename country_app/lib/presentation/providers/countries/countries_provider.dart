@@ -7,8 +7,8 @@ class CountriesProvider extends ChangeNotifier {
   final CountriesRepository countriesRepository;
 
   List<Country> _allCountries = [];
-  List<Country> _filteredCountries = [];
   List<Country> _currentCountries = [];
+  List<Country> _favoriteCountries = [];
 
   CountriesProvider({required this.countriesRepository});
 
@@ -19,17 +19,17 @@ class CountriesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Country> get filteredCountries => _filteredCountries;
-
-  set filteredCountries(List<Country> value) {
-    _filteredCountries = value;
-    notifyListeners();
-  }
-
   List<Country> get currentCountries => _currentCountries;
 
   set currentCountries(List<Country> value) {
     _currentCountries = value;
+    notifyListeners();
+  }
+
+  List<Country> get favoriteCountries => _favoriteCountries;
+
+  set favoriteCountries(List<Country> value) {
+    _favoriteCountries = value;
     notifyListeners();
   }
 
@@ -65,9 +65,7 @@ class CountriesProvider extends ChangeNotifier {
       return allCountries;
     }
 
-    /// Calls a search of countries of all the given countries
-    filteredCountries = await countriesRepository.filterRegion(region: region);
-    currentCountries = filteredCountries;
-    return filteredCountries;
+    currentCountries = await countriesRepository.filterRegion(region: region);
+    return currentCountries;
   }
 }
