@@ -44,6 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: const Text('Countries App'),
           centerTitle: true,
+          leading: IconButton(
+            onPressed: () {
+              context.push('/favorites');
+            },
+            icon: const Icon(Icons.star),
+          ),
           actions: [
             IconButton(
               onPressed: () {

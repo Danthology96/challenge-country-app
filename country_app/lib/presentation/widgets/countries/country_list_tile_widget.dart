@@ -25,9 +25,6 @@ class CountryListTileWidget extends StatelessWidget {
             height: 40,
             placeholderFit: BoxFit.cover,
           )),
-      // leading: CircleAvatar(
-      //   backgroundImage: NetworkImage(country.flagUrl),
-      // ),
       title: Text(
         country.commonName,
         style: Theme.of(context).textTheme.titleMedium,

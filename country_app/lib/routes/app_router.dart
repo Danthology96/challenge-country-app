@@ -1,6 +1,6 @@
-import 'package:country_app/presentation/screens/countries/search_screen.dart';
-import 'package:country_app/presentation/screens/screens.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:country_app/presentation/screens/screens.dart';
 
 /// Using GoRouter package to avoid additional configs if we need it to launch
 /// on web, or if we need deeplinking
@@ -16,6 +16,11 @@ final appRouter = GoRouter(
       path: '/search',
       name: SearchScreen.name,
       builder: (context, state) => const SearchScreen(),
+    ),
+    GoRoute(
+      path: '/favorites',
+      name: FavoriteCountriesScreen.name,
+      builder: (context, state) => const FavoriteCountriesScreen(),
     ),
     GoRoute(
       path: '/country-detail/:countryName',
