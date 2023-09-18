@@ -1,16 +1,24 @@
 # country_app
 
-A new Flutter project.
+Country app front-end challenge, Made with love by Danto
 
-## Getting Started
+## DEV run
 
-This project is a starting point for a Flutter application.
+1. In the project path, open the terminal and run "flutter pub get" to resolve project dependencies.
+2. Connect a physical device or initialize an emulator
 
-A few resources to get you started if this is your first Flutter project:
+3. In the terminal type: flutter run -d "device-id" 
+(you can know the connected devices running "flutter devices")
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+4. Enjoy the app
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+5. To exit the emulation you can either use ctrl+c or typing "q"
+
+
+## RELEASE build APK
+1. In the terminal, use the command: "flutter build apk --release" to build the apk
+
+2. To install the apk in emulator/device inside the project folder 
+run the command: "flutter install -d "device-id" "
+
+3. Enjoy the app
